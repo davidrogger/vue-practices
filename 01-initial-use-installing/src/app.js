@@ -3,8 +3,14 @@ const { createApp } = Vue;
 const App = {
   data() {
     return {
-      name: "Vue",
-      version: 3
+      name: "",
+      input_name: ""
+    }
+  },
+  methods: {
+    submitForm(event) {
+      event.preventDefault();
+      this.name = this.input_name;
     }
   }
 }
