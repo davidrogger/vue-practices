@@ -1,22 +1,19 @@
 <template>
   <div>
-    <TitleComponent />
-    <LifeCycle />
-    <PersonComponent />
+    <Components />
+    <CondicionalRender />
   </div>
 </template>
 
 <script>
-import TitleComponent from './components/Title.vue';
-import LifeCycle from './components/LifeCycle.vue';
-import PersonComponent from './components/Person.vue';
+import Components from './components/Components.vue';
+import CondicionalRender from './components/CondicionalRender.vue'
 
   export default {
     name: 'App',
     components: {
-      TitleComponent,
-      LifeCycle,
-      PersonComponent
+      Components,
+      CondicionalRender,
     }
   }
 </script>
