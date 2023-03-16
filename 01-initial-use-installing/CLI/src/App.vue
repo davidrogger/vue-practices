@@ -7,6 +7,7 @@
     <PassingProps
       email="parent@email.com"
     />
+    <EmitProps />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import CondicionalRender from './components/CondicionalRender.vue'
 import AttributesDina from './components/AttributesDina.vue';
 import MultiEvents from './components/MultiEvents.vue';
 import PassingProps from './components/PassingProps.vue';
+import EmitProps from './components/EmitProps.vue';
 
   export default {
     name: 'App',
@@ -24,7 +26,8 @@ import PassingProps from './components/PassingProps.vue';
     CondicionalRender,
     AttributesDina,
     MultiEvents,
-    PassingProps
+    PassingProps,
+    EmitProps
 }
   }
 </script>
