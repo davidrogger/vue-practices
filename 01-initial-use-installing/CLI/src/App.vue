@@ -3,6 +3,7 @@
     <Components />
     <CondicionalRender />
     <AttributesDina />
+    <MultiEvents />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Components from './components/Components.vue';
 import CondicionalRender from './components/CondicionalRender.vue'
 import AttributesDina from './components/AttributesDina.vue';
+import MultiEvents from './components/MultiEvents.vue';
 
   export default {
     name: 'App',
@@ -17,6 +19,7 @@ import AttributesDina from './components/AttributesDina.vue';
       Components,
       CondicionalRender,
       AttributesDina,
+      MultiEvents
     }
   }
 </script>
