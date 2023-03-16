@@ -54,3 +54,15 @@ import { PhEye, PhEyeClosed } from '@phosphor-icons/vue';
     }
   }
 </script>
+
+<style scoped>
+  div {
+    background: #343f47;
+    color: gray;
+  }
+
+  a {
+    color: white;
+  }
+
+</style>

@@ -20,3 +20,11 @@ import AttributesDina from './components/AttributesDina.vue';
     }
   }
 </script>
+
+<style>
+  body {
+    background: #3c5041;
+    color: white;
+  }
+
+</style>
