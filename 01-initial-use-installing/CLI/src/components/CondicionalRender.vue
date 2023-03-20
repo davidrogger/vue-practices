@@ -16,7 +16,7 @@
   <p v-if="btn > 2">Com o botão clicado mais que 2 vezes</p>
   <p v-else>Menos que 2 clicadas</p>
 
-  <p v-if="btn === 10">Botão clicado 10 vezes</p>
+  <p v-show="btn === 10">Botão clicado 10 vezes</p>
 
   </div>
 </template>
