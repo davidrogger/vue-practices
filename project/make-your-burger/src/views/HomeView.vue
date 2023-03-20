@@ -1,9 +1,5 @@
-<script>
-  
-</script>
-
 <template>
-  <main>
+  <main class="main-container">
     <h1>Home Page!</h1>
   </main>
 </template>
