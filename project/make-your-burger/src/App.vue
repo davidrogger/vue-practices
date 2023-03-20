@@ -7,16 +7,34 @@
     components: {
       Navbar,
       Footer,
+    },
+    data() {
+      return {
+        navLogoImg: "/img/logo.png",
+        navDescriptionImg: "A Cartoon Hamburger image",
+      }
     }
   }
 </script>
 
 <template>
   <div>
-    <Navbar />
+    <Navbar
+      :navLogoImg="navLogoImg"
+      :navDescriptionImg="navDescriptionImg"
+    />
     <RouterView />
     <Footer />
   </div>
 </template>
 
-<style></style>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+</style>
