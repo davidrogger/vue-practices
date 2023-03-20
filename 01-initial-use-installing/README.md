@@ -159,10 +159,16 @@ Exemplo:
 </script>
 ```
 
-Nesse caso foi criado um evento apenas para escrever no console a frase 'Button clicked', para definir esse evento no botão:
-
+Nesse caso foi criado um evento apenas para escrever no console a frase 'Button clicked', para definir esse evento no botão é usado o `@click` para definir que ao clicar no botão ele deve acionar o methodo indicado.
+```
 <template>
   <div>
-
+    <button
+      type="button"
+      @click="clickHandler"
+    >
+      Button event
+    </button>
   </div>
 </template>
+```
