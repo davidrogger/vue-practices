@@ -172,3 +172,39 @@ Nesse caso foi criado um evento apenas para escrever no console a frase 'Button 
   </div>
 </template>
 ```
+
+## Renderização condicional
+
+É possivel definir uma condicional para renderização de elementos no template usando o v-if, v-else e v-show.
+
+Exemplo:
+Se o item for igual a 5 aparece o primeiro elemento, se não aparece o segundo:
+```
+<template>
+  <div>
+    <p
+      v-if="example === 5"
+    >
+      Valor igual a 5
+    </p>
+    <p
+      v-else
+    >
+      Valor diferente de 5
+    </p>
+  </div>
+</template>
+```
+
+Agora só aparece  o elemento se a condição for verdadeira com v-show:
+```
+<template>
+  <div>
+    <p
+      v-show="example === 5"
+    >
+      Valor igual a 5
+    </p>
+  </div>
+</template>
+```
