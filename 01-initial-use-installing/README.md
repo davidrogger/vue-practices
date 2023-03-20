@@ -208,3 +208,17 @@ Agora só aparece  o elemento se a condição for verdadeira com v-show:
   </div>
 </template>
 ```
+
+## Atributos dinâmicos
+
+É possivel também passar para os atributos de uma tag a informação armazenada no data, se você tem uma imagems ou um link, que deve ser representado diretamente do dado armazenado para a tag é possivel usando o `v-bind` ou com seu shortcut, usando o `:`.
+
+Exemplo:
+```
+<p>Acesse meu link <a v-bind:href="link" target="_blank">aqui</a></p>
+```
+onde usamos o link, seria o nome da constante armazenada no data, que seria o link para o direcionamento, usando apenas o `:`
+```
+<p>Acesse meu link <a :href="link" target="_blank">aqui</a></p>
+```
+E esse bind pode ser usado para qualquer informação que deseja usar diferentamente em um atributo de uma tag.
