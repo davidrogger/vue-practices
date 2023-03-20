@@ -222,3 +222,22 @@ onde usamos o link, seria o nome da constante armazenada no data, que seria o li
 <p>Acesse meu link <a :href="link" target="_blank">aqui</a></p>
 ```
 E esse bind pode ser usado para qualquer informação que deseja usar diferentamente em um atributo de uma tag.
+
+## Fila de eventos
+
+No Vue é possivel adicionar mais de um método quando definindo algum evento, seja por clique ou qualquer outra interação:
+
+Exemplo
+```
+<div
+  class="session"
+>
+  <button
+    @click="firstEvent(), secondEvent(), lastEvent()"
+  >
+    Iniciar evento
+  </button>
+</div>
+```
+
+Os eventos são realizados de forma sequencial, porém o segundo evento não espera o primeiro encerrar para ser iniciado.
