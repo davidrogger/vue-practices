@@ -7,7 +7,7 @@ Mais indicado é usando o CLI com o gerenciador de pacotes, para iniciar é usad
 npm init vue@latest
 ```
 
-Ele inicialização a configuração do projeto, com os seguintes preenchimentos:
+Ele inicializa a configuração do projeto, com os seguintes preenchimentos:
 ```
 ✔ Project name: … <your-project-name>
 ✔ Add TypeScript? … No / Yes
