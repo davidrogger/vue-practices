@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="main-container">
     <Navbar
       :navLogoImg="navLogoImg"
       :navDescriptionImg="navDescriptionImg"
@@ -38,11 +38,16 @@
   }
 
   .main-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .page-container {
     margin: 50px;
     min-height: 250px;
   }
 
-  .main-container h1 {
+  .page-container h1 {
     text-align: center;
     font-size: 42px;
     margin-bottom: 30px;
