@@ -241,3 +241,51 @@ Exemplo
 ```
 
 Os eventos são realizados de forma sequencial, porém o segundo evento não espera o primeiro encerrar para ser iniciado.
+
+## Executando metodos de componentes filho para pai
+
+É possivel ativar metodos que realizam alterações de informações de dados de um filho para um pai usando o metodo $emit.
+Dentro do componente filho, se criado um evento de botão que altera alguma informação em seu pai, o evento click, deve chamar o metodo $emit indicando o nome do method, pai que será executado.
+
+Exemplo:
+```
+<template>
+  <button
+    @click="$emit('changeImg')"
+  >
+    Mudar images
+  </button>
+</template>
+
+<script>
+  export default {
+    name: 'ChangeImg',
+    emits: ['changeImg']
+  }
+</script>
+```
+
+Este evento changeImg, existe no component pai do ChangeImg.
+```
+<script>
+import ChangeImg from './ChangeImg.vue';
+
+  export default {
+    name: 'EmitProps',
+    data() {
+        return {
+            avatar: '/img/avatar.png',
+            description: 'avatar image'
+        };
+    },
+    components: { ChangeImg },
+    methods: {
+      changeImg() {
+        this.avatar = '/img/avatar2.png';
+      }
+    }
+}
+</script>
+```
+
+É alterada de forma estática a imagem, ao ativar o evento changeImg no componente pai que possui a imagem que é alterada.
