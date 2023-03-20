@@ -96,9 +96,16 @@ Exemplo:
 
 ```
 <template>
-  <h1>
-    My Component
-  </h1>
+  <div>
+    <h1>
+      My Component
+    </h1>
+    <button
+      type="button"
+    >
+      Button event
+    </button>
+  </div>
 </template>
 
 <script>
@@ -114,6 +121,8 @@ Exemplo:
 </style>
 ```
 
+Os elementos apresentados no template que são os apresentados no HTML, só podem ter um elemento tag como pai, não sendo possivel usando vários, por isso é comum, termos um componente com uma div encapsulando todos elemtnso necessários nele.
+
 ## Armazenamento de manipulação de informação na aplicação
 
 Para armazenarmos dados para mostrarmos em algum momento na aplicação ou manipularmos, no Vue é usado o Metodo data(), este método sempre retorna um objeto com as constantes que representam cada dado que será armazenado e usado na aplicação.
@@ -122,7 +131,7 @@ Exemplo:
 ```
 <script>
   export default {
-    nome: 'MyComponent',
+    name: 'MyComponent',
     data() {
       return {
         savedData: 'My Saved Data'
@@ -131,3 +140,29 @@ Exemplo:
   }
 </script>
 ```
+
+## Metodos no componente
+
+Para realizarmos algum evento com reação sobre, algo no vue, como clique, mudança, é declara essa função no campo de methods.
+
+Exemplo:
+```
+<script>
+  export default {
+    name: 'MyComponent'
+  },
+  methods: {
+    clickHandler() {
+      console.log('Button clicked')
+    }
+  }
+</script>
+```
+
+Nesse caso foi criado um evento apenas para escrever no console a frase 'Button clicked', para definir esse evento no botão:
+
+<template>
+  <div>
+
+  </div>
+</template>
