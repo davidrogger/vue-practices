@@ -79,3 +79,6 @@ Ele inicializa a configuração do projeto, com os seguintes preenchimentos:
 ✔ Add ESLint for code quality? … No / Yes
 ✔ Add Prettier for code formatting? … No / Yes
 ```
+
+Após a confirmação de cada configuração necessária para concluir a instalação do Vue, é necessário acessar a pasta criada com o nome do projeto que foi definida, e realizar a instalação dos pacotes necessários para o funcionamento, criando o projeto CLI, usaria o comando `cd CLI && npm i`.
+
