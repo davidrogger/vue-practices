@@ -113,3 +113,21 @@ Exemplo:
   }
 </style>
 ```
+
+## Armazenamento de manipulação de informação na aplicação
+
+Para armazenarmos dados para mostrarmos em algum momento na aplicação ou manipularmos, no Vue é usado o Metodo data(), este método sempre retorna um objeto com as constantes que representam cada dado que será armazenado e usado na aplicação.
+
+Exemplo:
+```
+<script>
+  export default {
+    nome: 'MyComponent',
+    data() {
+      return {
+        savedData: 'My Saved Data'
+      }
+    }
+  }
+</script>
+```
