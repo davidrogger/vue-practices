@@ -82,3 +82,34 @@ Ele inicializa a configuração do projeto, com os seguintes preenchimentos:
 
 Após a confirmação de cada configuração necessária para concluir a instalação do Vue, é necessário acessar a pasta criada com o nome do projeto que foi definida, e realizar a instalação dos pacotes necessários para o funcionamento, criando o projeto CLI, usaria o comando `cd CLI && npm i`.
 
+# Projeto
+
+Por padrão o vite ja cria pasta de src entre outras padrão para o desenvolvimento de sua aplicação. Nesse ambiente será criado arquivos vue, que serão os componentes para composição da aplicação desejada.
+
+Para iniciar o projeto e ter uma visão da página padrão ja criada pelo vite, basta usar dentro da pasta do projeto o comando `npm run dev`.
+
+## Componentes
+
+Cada componente, possui uma estrutura em que é definido seu template, script e possivelmente seu style. Em sua tag de script, é definido seu nome e é exportado para ser possivel seu uso em outros componentes e páginas.
+
+Exemplo:
+
+```
+<template>
+  <h1>
+    My Component
+  </h1>
+</template>
+
+<script>
+  export default {
+    name: 'MyComponent'
+  }
+</script>
+
+<style>
+  h1 {
+    color: purple;
+  }
+</style>
+```
