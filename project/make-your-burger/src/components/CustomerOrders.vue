@@ -65,6 +65,8 @@
     width: 60%;
     text-align: left;
     margin: auto;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .status-item {
