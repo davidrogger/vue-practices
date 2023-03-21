@@ -63,12 +63,6 @@
         }
 
         if (this.missingFields.length) throw new Error("Missing Fields");
-
-        return {
-          customerName: payload.name,
-          breadSelected: payload.bread,
-          meatSelected: payload.meat,
-        }
       },
       getPayloadData() {
         const mandatoryFields = {
@@ -77,11 +71,11 @@
           meat: this.meatSelected,
         }
 
-        const fieldsChecked = this.emptyFieldsNotAllowed(mandatoryFields);
+        this.emptyFieldsNotAllowed(mandatoryFields);
 
         return {
-          ...fieldsChecked,
-          optionsSelected: Array.from(this.optionsSelected),
+          ...mandatoryFields,
+          options: Array.from(this.optionsSelected),
           status: "Requested",
         }
       },
