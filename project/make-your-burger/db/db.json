@@ -1,81 +1,81 @@
 {
-  "ingredientes": {
-    "paes": [
-      {
-        "id": 1,
-        "tipo": "Italiano Branco"
-      },
-      {
-        "id": 2,
-        "tipo": "3 Queijos"
-      },
-      {
-        "id": 3,
-        "tipo": "Parmesão e Orégano"
-      },
-      {
-        "id": 4,
-        "tipo": "Integral"
-      }
-    ],
-    "carnes": [
-      {
-        "id": 1,
-        "tipo": "Maminha"
-      },
-      {
-        "id": 2,
-        "tipo": "Alcatra"
-      },
-      {
-        "id": 3,
-        "tipo": "Picanha"
-      },
-      {
-        "id": 4,
-        "tipo": "Veggie burger"
-      }
-    ],
-    "opcionais": [
-      {
-        "id": 1,
-        "tipo": "Bacon"
-      },
-      {
-        "id": 2,
-        "tipo": "Cheddar"
-      },
-      {
-        "id": 3,
-        "tipo": "Salame"
-      },
-      {
-        "id": 4,
-        "tipo": "Tomate"
-      },
-      {
-        "id": 4,
-        "tipo": "Cebola roxa"
-      },
-      {
-        "id": 4,
-        "tipo": "Pepino"
-      }
-    ]
+  "ingredients": {
+  "breads": [
+  {
+  "id": 1,
+  "type": "White Italian"
+  },
+  {
+  "id": 2,
+  "type": "3 Cheeses"
+  },
+  {
+  "id": 3,
+  "type": "Parmesan and Oregano"
+  },
+  {
+  "id": 4,
+  "type": "Whole Wheat"
+  }
+  ],
+  "meats": [
+  {
+  "id": 1,
+  "type": "Top Sirloin"
+  },
+  {
+  "id": 2,
+  "type": "Bottom Sirloin"
+  },
+  {
+  "id": 3,
+  "type": "Sirloin Cap"
+  },
+  {
+  "id": 4,
+  "type": "Veggie Burger"
+  }
+  ],
+  "options": [
+  {
+  "id": 1,
+  "type": "Bacon"
+  },
+  {
+  "id": 2,
+  "type": "Cheddar"
+  },
+  {
+  "id": 3,
+  "type": "Salami"
+  },
+  {
+  "id": 4,
+  "type": "Tomato"
+  },
+  {
+  "id": 5,
+  "type": "Red Onion"
+  },
+  {
+  "id": 6,
+  "type": "Pickles"
+  }
+  ]
   },
   "status": [
-    {
-      "id": 1,
-      "tipo": "Solicitado"
-    },
-    {
-      "id": 2,
-      "tipo": "Em produção"
-    },
-    {
-      "id": 3,
-      "tipo": "Finalizado"
-    }
+  {
+  "id": 1,
+  "type": "Requested"
+  },
+  {
+  "id": 2,
+  "type": "In Production"
+  },
+  {
+  "id": 3,
+  "type": "Finished"
+  }
   ],
   "burgers": []
-}
+  }
