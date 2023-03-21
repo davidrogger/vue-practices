@@ -1,31 +1,26 @@
 <script>
+import { getOrders } from '../services/api';
 import CustomerOrders from './CustomerOrders.vue';
-
-  const mockedUser = {
-    "name": "Jonas Doe",
-    "bread": "Parmesan and Oregano",
-    "meat": "Bottom Sirloin",
-    "options": [
-      "Bacon",
-      "Tomato",
-      "Cheddar",
-      "Red Onion",
-      "Pickles",
-      "Salami"
-    ],
-    "status": "Requested",
-    "id": 2
-    };
-
   export default {
     name: "Dashboard",
     data() {
         return {
             titles: ["#", "Client", "Bread", "Meat", "Optionals", "Status"],
-            orders: [mockedUser, mockedUser],
+            orders: [],
         };
     },
-    components: { CustomerOrders }
+    components: {
+      CustomerOrders,
+    },
+    methods: {
+      async saveOrders() {
+        const orders = await getOrders();
+        this.orders = orders;
+      }
+    },
+    mounted() {
+      this.saveOrders();
+    }
 }
 </script>
 

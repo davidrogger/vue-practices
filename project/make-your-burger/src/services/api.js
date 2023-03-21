@@ -24,3 +24,15 @@ export async function getIngredients() {
     console.error(error);
   }
 }
+
+export async function getOrders() {
+  try {
+    const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/burgers`;
+    const request = await fetch(REQUEST_URL);
+    const orders = await request.json();
+
+    return orders;
+  } catch (error) {
+    console.error(error);
+  }
+}
