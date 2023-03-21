@@ -60,7 +60,7 @@ import SelectForm from './SelectForm.vue';
           }
         }
 
-        if (this.missingFields) throw new Error("Missing Fields");
+        if (this.missingFields.length) throw new Error("Missing Fields");
 
         return {
           customerName: payload.name,
