@@ -99,6 +99,7 @@
           type="submit"
           value="Make my Burger!"
           @click="sentOrder"
+          class="submitBtn"
         >
       </form>
   </div>
@@ -142,5 +143,24 @@
 
   .extra-options-container label {
     width: 32%;
+  }
+
+  .submitBtn {
+    background-color: var(--primary-dark-color);
+    border: 2px solid var(--primary-dark-color);
+    border-radius: 10px;
+    color: var(--primary-accent-color);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    margin: 25px auto 0 auto;
+    transition: 0.5s;
+  }
+
+  .submitBtn:hover {
+    background-color: transparent;
+    color: var(--primary-dark-color);
+    border-radius: 0;
   }
 </style>
