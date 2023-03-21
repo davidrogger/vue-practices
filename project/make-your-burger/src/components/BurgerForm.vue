@@ -106,6 +106,8 @@ import SelectForm from './SelectForm.vue';
           const payload = this.getPayloadData();
           const request = await this.createOrder(payload);
           this.resetForms();
+          this.messageType = 'positive-message';
+          this.sentMessage = "Order created with success!";
           console.log(request);
         } catch (error) {
           console.error(error);
