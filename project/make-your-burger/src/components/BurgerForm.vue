@@ -1,8 +1,7 @@
 <script>
   import MessageForm from './MessageForm.vue';
-import SelectForm from './SelectForm.vue';
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-  const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
+  import SelectForm from './SelectForm.vue';
+  import { getIngredients, createOrder } from '../services/api';
   
   export default {
     name: "BurgerForm",
@@ -25,19 +24,11 @@ import SelectForm from './SelectForm.vue';
       }
     },
     methods: {
-      async getIngredients() {
-        try {
-          const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/ingredients`;
-          const request = await fetch(REQUEST_URL);
-          const ingredients = await request.json();
-
-          this.breads = ingredients.breads;
-          this.meats = ingredients.meats;
-          this.options = ingredients.options;
-          
-        } catch (error) {
-          console.error(error);
-        }
+      async saveIngredients() {
+        const ingredients = await getIngredients();
+        this.breads = ingredients.breads;
+        this.meats = ingredients.meats;
+        this.options = ingredients.options;
       },
       cleanMessage() {
         setTimeout(() => {
@@ -94,17 +85,6 @@ import SelectForm from './SelectForm.vue';
           status: "Requested",
         }
       },
-      async createOrder(payload) {
-        const POST_URL =`${BACKEND_URL}:${BACKEND_PORT}/burgers`;
-        const POST_DATA = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        };
-        const response = await fetch(POST_URL, POST_DATA);
-
-        return response.json();
-      },
       resetForms() {
         this.customerName = null;
         this.breadSelected = null;
@@ -115,7 +95,7 @@ import SelectForm from './SelectForm.vue';
         event.preventDefault();
         try {
           const payload = this.getPayloadData();
-          await this.createOrder(payload);
+          await createOrder(payload);
           this.resetForms();
           this.setPositiveMessage();
         } catch (error) {
@@ -128,7 +108,7 @@ import SelectForm from './SelectForm.vue';
       }
     },
     mounted() {
-      this.getIngredients();
+      this.saveIngredients();
     }
 }
 </script>
