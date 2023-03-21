@@ -53,7 +53,7 @@
     <span>
       Action message
     </span>
-      <form>
+      <form @submit="sentOrder">
         <div class="mandaroty-form-container">
           <label for="customerName">
             Customer Name
@@ -98,7 +98,6 @@
         <input
           type="submit"
           value="Make my Burger!"
-          @click="sentOrder"
           class="submitBtn"
         >
       </form>
