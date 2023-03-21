@@ -40,9 +40,11 @@ import SelectForm from './SelectForm.vue';
         }
       },
       cleanMessage() {
-        this.sentMessage = null;
-        this.messageType = null;
-        this.missingFields = [];
+        setTimeout(() => {
+          this.sentMessage = null;
+          this.messageType = null;
+          this.missingFields = [];
+        }, 5000);
       },
       getMissingFields() {
         const fields = this.missingFields;
@@ -51,6 +53,15 @@ import SelectForm from './SelectForm.vue';
           else fieldsPhrase += `${field}, `
           return fieldsPhrase;
         },"[ ")
+      },
+      setNegativeMessage() {
+        const isPlural = this.missingFields.length > 1 ? 's' : '';
+        this.messageType = 'negative-message';
+        this.sentMessage = `Missing fild${isPlural}: ${this.getMissingFields()}`;
+      },
+      setPositiveMessage() {
+        this.messageType = 'positive-message';
+        this.sentMessage = "Order created with success!";
       },
       emptyFieldsNotAllowed(payload) {
         for (const entry of Object.entries(payload)) {
@@ -104,20 +115,16 @@ import SelectForm from './SelectForm.vue';
         event.preventDefault();
         try {
           const payload = this.getPayloadData();
-          const request = await this.createOrder(payload);
+          await this.createOrder(payload);
           this.resetForms();
-          this.messageType = 'positive-message';
-          this.sentMessage = "Order created with success!";
-          console.log(request);
+          this.setPositiveMessage();
         } catch (error) {
           console.error(error);
           if (this.missingFields) {
-            const isPlural = this.missingFields.length > 0 ? 's' : '';
-            this.messageType = 'negative-message';
-            this.sentMessage = `Need to fullfill the fild${isPlural}: ${this.getMissingFields()}`;
+            this.setNegativeMessage();
           }
         }
-        setTimeout(() => this.cleanMessage(), 5000);
+        this.cleanMessage();
       }
     },
     mounted() {
