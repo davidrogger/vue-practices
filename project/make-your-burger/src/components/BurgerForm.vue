@@ -1,13 +1,15 @@
 <script>
-  import SelectForm from './SelectForm.vue';
+  import MessageForm from './MessageForm.vue';
+import SelectForm from './SelectForm.vue';
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
   
   export default {
     name: "BurgerForm",
     components: {
-      SelectForm,
-    },
+    SelectForm,
+    MessageForm
+},
     data() {
       return {
         customerName: null,
@@ -17,6 +19,9 @@
         breadSelected: null,
         meatSelected: null,
         optionsSelected: [],
+        messageType: null,
+        sentMessage: null,
+        missingFields: [],
       }
     },
     methods: {
@@ -34,13 +39,48 @@
           console.error(error);
         }
       },
-      getPayloadData() {
+      cleanMessage() {
+        this.sentMessage = null;
+        this.messageType = null;
+        this.missingFields = [];
+      },
+      getMissingFields() {
+        const fields = this.missingFields;
+        return fields.reduce((fieldsPhrase, field, index)=> {
+          if (index === fields.length - 1) fieldsPhrase += `${field} ]`
+          else fieldsPhrase += `${field}, `
+          return fieldsPhrase;
+        },"[ ")
+      },
+      emptyFieldsNotAllowed(payload) {
+        for (const entry of Object.entries(payload)) {
+          const [field, value] = entry;
+          if (!value) {
+            this.missingFields.push(field)
+          }
+        }
+
+        if (this.missingFields) throw new Error("Missing Fields");
+
         return {
-          customerName: this.customerName,
-          breadSelected: this.breadSelected,
-          meatSelected: this.meatSelected,
+          customerName: payload.name,
+          breadSelected: payload.bread,
+          meatSelected: payload.meat,
+        }
+      },
+      getPayloadData() {
+        const mandatoryFields = {
+          name: this.customerName,
+          bread: this.breadSelected,
+          meat: this.meatSelected,
+        }
+
+        const fieldsChecked = this.emptyFieldsNotAllowed(mandatoryFields);
+
+        return {
+          ...fieldsChecked,
           optionsSelected: Array.from(this.optionsSelected),
-          status: "Requested"
+          status: "Requested",
         }
       },
       async createOrder(payload) {
@@ -62,16 +102,20 @@
       },
       async sentOrder(event) {
         event.preventDefault();
-        const payload = this.getPayloadData();
-
         try {
+          const payload = this.getPayloadData();
           const request = await this.createOrder(payload);
           this.resetForms();
           console.log(request);
         } catch (error) {
           console.error(error);
+          if (this.missingFields) {
+            const isPlural = this.missingFields.length > 0 ? 's' : '';
+            this.messageType = 'negative-message';
+            this.sentMessage = `Need to fullfill the fild${isPlural}: ${this.getMissingFields()}`;
+          }
         }
-
+        setTimeout(() => this.cleanMessage(), 5000);
       }
     },
     mounted() {
@@ -81,10 +125,8 @@
 </script>
 
 <template>
-  <div>
-    <span>
-      Action message
-    </span>
+  <div class="order-container">
+    <MessageForm :messageType="messageType" :sentMessage="sentMessage" />
       <form @submit="sentOrder">
         <div class="mandaroty-form-container">
           <label for="customerName">
@@ -137,11 +179,14 @@
 </template>
 
 <style>
+  .order-container {
+    max-width: 350px;
+    margin: auto;
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    max-width: 350px;
-    margin: auto;
   }
 
   .mandaroty-form-container label,
