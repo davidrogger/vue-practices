@@ -8,9 +8,13 @@
     },
     data() {
       return {
+        customerName: null,
         breads: [],
         meats: [],
         options: [],
+        breadSelected: null,
+        meatSelected: null,
+        optionsSelected: [],
       }
     },
     methods: {
@@ -30,6 +34,12 @@
         } catch (error) {
           console.error(error);
         }
+      },
+      sentOrder(event) {
+        event.preventDefault();
+        const { breadSelected, meatSelected, optionsSelected, customerName } = this;
+        console.log({breadSelected, meatSelected, optionsSelected, customerName });
+
       }
     },
     mounted() {
@@ -56,24 +66,40 @@
             >
           </label>
 
+          <SelectForm
+            v-model="breadSelected"
+            itemName="bread"
+            :items="breads"
+          />
+
+          <SelectForm
+            v-model="meatSelected"
+            itemName="meat"
+            :items="meats"
+          />
+
         </div>
+
         <div class="extra-form-container">
           <h2>Extra ingredients</h2>
           <div class="extra-options-container">
-            <label for="first">
-              <input id="first" type="checkbox">
-              first item
-            </label>
-            <label for="second">
-              <input id="second" type="checkbox">
-              second item
-            </label>
-            <label for="third">
-              <input id="third" type="checkbox">
-              Third item
+            <label v-for="{ id, type } in options" :key="id" :for="type">
+              <input
+                :id="type"
+                type="checkbox"
+                :value="type"
+                v-model="optionsSelected"
+              >
+              {{ type }}
             </label>
           </div>
         </div>
+
+        <input
+          type="submit"
+          value="Make my Burger!"
+          @click="sentOrder"
+        >
       </form>
   </div>
 </template>
@@ -110,7 +136,11 @@
   .extra-options-container {
     display: flex;
     flex-flow: row wrap;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
+  }
+
+  .extra-options-container label {
+    width: 32%;
   }
 </style>
