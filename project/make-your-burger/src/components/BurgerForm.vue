@@ -1,6 +1,8 @@
 <script>
   import SelectForm from './SelectForm.vue';
-
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
+  
   export default {
     name: "BurgerForm",
     components: {
@@ -19,11 +21,8 @@
     },
     methods: {
       async getIngredients() {
-        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-        const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
-
-        const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/ingredients`;
         try {
+          const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/ingredients`;
           const request = await fetch(REQUEST_URL);
           const ingredients = await request.json();
 
@@ -35,10 +34,43 @@
           console.error(error);
         }
       },
-      sentOrder(event) {
+      getPayloadData() {
+        return {
+          customerName: this.customerName,
+          breadSelected: this.breadSelected,
+          meatSelected: this.meatSelected,
+          optionsSelected: Array.from(this.optionsSelected),
+          status: "Requested"
+        }
+      },
+      async createOrder(payload) {
+        const POST_URL =`${BACKEND_URL}:${BACKEND_PORT}/burgers`;
+        const POST_DATA = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        };
+        const response = await fetch(POST_URL, POST_DATA);
+
+        return response.json();
+      },
+      resetForms() {
+        this.customerName = null;
+        this.breadSelected = null;
+        this.meatSelected = null;
+        this.optionsSelected = [];
+      },
+      async sentOrder(event) {
         event.preventDefault();
-        const { breadSelected, meatSelected, optionsSelected, customerName } = this;
-        console.log({breadSelected, meatSelected, optionsSelected, customerName });
+        const payload = this.getPayloadData();
+
+        try {
+          const request = await this.createOrder(payload);
+          this.resetForms();
+          console.log(request);
+        } catch (error) {
+          console.error(error);
+        }
 
       }
     },
