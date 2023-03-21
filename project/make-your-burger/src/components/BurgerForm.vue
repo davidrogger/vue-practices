@@ -1,7 +1,12 @@
 <script>
+import SelectForm from './SelectForm.vue';
+
   export default {
-    name: "BurgerForm"
-  }
+    name: "BurgerForm",
+    components: {
+      SelectForm,
+    },
+}
 </script>
 
 <template>
@@ -21,22 +26,7 @@
               placeholder="Insert your name here"
             >
           </label>
-          <label for="breadPick">
-            Pick your bread
-            <select name="breadPick" id="breadPick">
-              <option value="" disabled selected>
-                Pick a bread here
-              </option>
-            </select>
-          </label>
-          <label for="meatPick">
-            Pick your meat
-            <select name="meatPick" id="meatPick">
-              <option value="" disabled selected>
-                Pick a meat here
-              </option>
-            </select>
-          </label>
+
         </div>
         <div class="extra-form-container">
           <h2>Extra ingredients</h2>
