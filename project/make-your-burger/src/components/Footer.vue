@@ -19,8 +19,6 @@
     display: flex;
     justify-content: center;
     height: 200px;
-    bottom: 0;
-    position: absolute;
     width: 100%;
   }
 
