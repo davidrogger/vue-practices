@@ -1,11 +1,40 @@
 <script>
-import SelectForm from './SelectForm.vue';
+  import SelectForm from './SelectForm.vue';
 
   export default {
     name: "BurgerForm",
     components: {
       SelectForm,
     },
+    data() {
+      return {
+        breads: [],
+        meats: [],
+        options: [],
+      }
+    },
+    methods: {
+      async getIngredients() {
+        const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+        const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
+
+        const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/ingredients`;
+        try {
+          const request = await fetch(REQUEST_URL);
+          const ingredients = await request.json();
+
+          this.breads = ingredients.breads;
+          this.meats = ingredients.meats;
+          this.options = ingredients.options;
+          
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    },
+    mounted() {
+      this.getIngredients();
+    }
 }
 </script>
 
