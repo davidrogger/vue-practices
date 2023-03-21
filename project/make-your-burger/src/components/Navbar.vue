@@ -12,14 +12,14 @@
       <img :src="navLogoImg" :alt="navDescriptionImg">
     </RouterLink>
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/orders">About</RouterLink>
+    <RouterLink to="/orders">Orders</RouterLink>
   </nav>
 </template>
 
 <style>
   nav {
     align-items: center;
-    background: #222;
+    background: var(--primary-dark-color);
     display: flex;
     justify-content: flex-end;
     padding: 15px 50px;
@@ -36,14 +36,14 @@
   }
 
   nav a {
-    color: #FCBA03;
+    color: var(--primary-accent-color);
     text-decoration: none;
     margin: 12px;
     transition: 0.5s;
   }
 
   nav a:hover {
-    color: white;
+    color: var(--secondary-accent-color);
   }
 
 </style>

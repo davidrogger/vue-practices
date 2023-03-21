@@ -14,8 +14,8 @@
 
   footer {
     align-items: center;
-    background: #222;
-    color: #FCBA03;
+    background: var(--primary-dark-color);
+    color: var(--primary-accent-color);
     display: flex;
     justify-content: center;
     height: 200px;
