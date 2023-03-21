@@ -36,3 +36,15 @@ export async function getOrders() {
     console.error(error);
   }
 }
+
+export async function getStatus() {
+  try {
+    const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/status`;
+    const request = await fetch(REQUEST_URL);
+    const status = await request.json();
+
+    return status;
+  } catch (error) {
+    console.error(error);
+  }
+}

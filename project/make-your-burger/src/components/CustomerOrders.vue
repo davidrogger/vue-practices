@@ -1,32 +1,27 @@
 <script>
   export default {
     name: "CustomerOrders",
-    props: ["orders"],
-    data() {
-      return {
-        statusOptions: ["Requested", "Burning", "Ready To Go"],
-      }
-    }
+    props: ["orders", "status"],
   }
 </script>
 
 <template>
-  <tr v-for="customer in orders">
+  <tr v-for="order in orders" :key="order.id">
     <td>
-      {{ customer.id }}
+      {{ order.id }}
     </td>
     <td>
-      {{ customer.name }}
+      {{ order.name }}
     </td>
     <td>
-      {{ customer.bread }}
+      {{ order.bread }}
     </td>
     <td>
-      {{ customer.meat }}
+      {{ order.meat }}
     </td>
     <td>
       <ul>
-        <li v-for="optinal in customer.options">
+        <li v-for="(optinal, index) in order.options" :key="index">
           {{ optinal }}
         </li>
       </ul>
@@ -34,14 +29,15 @@
     <td>
       <select
         class="status-item"
-        :value="customer.status"
+        :value="order.status"
       >
         <option
-          v-for="status in statusOptions"
-          :name="status"
-          :value="status"
+          v-for="{id, type} in status"
+          :key="id"
+          :name="type"
+          :value="type"
         >
-          {{ status }}
+          {{ type }}
         </option>
       </select>
       <button

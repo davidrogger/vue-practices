@@ -1,5 +1,5 @@
 <script>
-import { getOrders } from '../services/api';
+import { getOrders, getStatus } from '../services/api';
 import CustomerOrders from './CustomerOrders.vue';
   export default {
     name: "Dashboard",
@@ -7,6 +7,7 @@ import CustomerOrders from './CustomerOrders.vue';
         return {
             titles: ["#", "Client", "Bread", "Meat", "Optionals", "Status"],
             orders: [],
+            status: [],
         };
     },
     components: {
@@ -16,10 +17,15 @@ import CustomerOrders from './CustomerOrders.vue';
       async saveOrders() {
         const orders = await getOrders();
         this.orders = orders;
-      }
+      },
+      async saveStatus() {
+        const status = await getStatus();
+        this.status = status;
+      },
     },
     mounted() {
       this.saveOrders();
+      this.saveStatus();
     }
 }
 </script>
@@ -34,6 +40,7 @@ import CustomerOrders from './CustomerOrders.vue';
       </tr>
       <CustomerOrders
         :orders="orders"
+        :status="status"
       />
     </table>
   </div>
