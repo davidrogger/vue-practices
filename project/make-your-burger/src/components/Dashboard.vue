@@ -1,4 +1,6 @@
 <script>
+import CustomerOrders from './CustomerOrders.vue';
+
   const mockedUser = {
     "name": "Jonas Doe",
     "bread": "Parmesan and Oregano",
@@ -18,12 +20,13 @@
   export default {
     name: "Dashboard",
     data() {
-      return {
-        titles: ["#", "Client", "Bread", "Meat", "Optionals", "Status"],
-        orders: [mockedUser, mockedUser],
-      }
-    }
-  }
+        return {
+            titles: ["#", "Client", "Bread", "Meat", "Optionals", "Status"],
+            orders: [mockedUser, mockedUser],
+        };
+    },
+    components: { CustomerOrders }
+}
 </script>
 
 <template>
@@ -34,30 +37,9 @@
           {{ title }}
         </th>
       </tr>
-      <tr v-for="customer in orders">
-        <td>
-          {{ customer.id }}
-        </td>
-        <td>
-          {{ customer.name }}
-        </td>
-        <td>
-          {{ customer.bread }}
-        </td>
-        <td>
-          {{ customer.meat }}
-        </td>
-        <td>
-          <ul>
-            <li v-for="optinal in customer.options">
-              {{ optinal }}
-            </li>
-          </ul>
-        </td>
-        <td>
-          {{ customer.status }}
-        </td>
-      </tr>
+      <CustomerOrders
+        :orders="orders"
+      />
     </table>
   </div>
 </template>
@@ -66,23 +48,11 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    overflow: scroll;
   }
 
   th {
     border-bottom: 2px solid var(--primary-dark-color);
     padding: 10px;
-  }
-
-  td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding: 10px;
-  }
-
-  ul {
-    list-style-position: inside;
-    width: 60%;
-    text-align: left;
-    margin: auto;
   }
 </style>
