@@ -42,7 +42,7 @@ import Loading from './Loading.vue';
       <td>
         {{ order.id }}
       </td>
-      <td>
+      <td class="name-container">
         {{ order.name }}
       </td>
       <td>
@@ -51,7 +51,7 @@ import Loading from './Loading.vue';
       <td>
         {{ order.meat }}
       </td>
-      <td>
+      <td class="option-container">
         <ul>
           <li v-for="(optinal, index) in order.options" :key="index">
             {{ optinal }}
@@ -103,6 +103,14 @@ import Loading from './Loading.vue';
     margin: auto;
     overflow: hidden;
     white-space: nowrap;
+  }
+
+  .name-container {
+    width: 200px;
+  }
+
+  .option-container {
+    width: 190px;
   }
 
   .status-container {

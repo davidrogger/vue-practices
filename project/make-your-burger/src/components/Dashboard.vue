@@ -51,7 +51,7 @@ import MessageForm from './MessageForm.vue';
       :messageType="messageType"
       :sentMessage="sentMessage"
     />
-    <table>
+    <table v-if="orders.length">
       <tr>
         <th v-for="title in titles">
           {{ title }}
@@ -64,29 +64,35 @@ import MessageForm from './MessageForm.vue';
         :status="status"
       />
     </table>
+    <h2 v-else>None orders could be found</h2>
   </div>
 </template>
 
 <style scoped>
   .orders-container {
     position: relative;
+    width: 100%;
+    display: flex;
     padding-top: 50px;
+  }
+
+  h2 {
+    text-align: center;
   }
 
   table {
     border-collapse: collapse;
     display: block;
-    width: 100%;
     overflow: hidden;
     overflow-x: scroll;
     overflow-y: none;
+    margin: 0 auto;
   }
 
   th {
     border-bottom: 2px solid var(--primary-dark-color);
     background-color: var(--primary-dark-transparent);
     padding: 10px;
-    width: 100%;
   }
 
 </style>
