@@ -1,0 +1,10 @@
+:root {
+
+  --primary-dark-color: #222;
+
+  --primary-dark-transparent: rgba(0, 0, 0, 0.1);
+
+  --primary-accent-color: #FCBA03;
+
+  --secondary-accent-color: white;
+}
