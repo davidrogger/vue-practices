@@ -75,7 +75,7 @@ import Loading from './Loading.vue';
 
 <style scoped>
   td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--primary-dark-transparent);
     text-align: center;
     padding: 10px;
   }

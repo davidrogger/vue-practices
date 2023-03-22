@@ -56,6 +56,7 @@ import CustomerOrders from './CustomerOrders.vue';
 
   th {
     border-bottom: 2px solid var(--primary-dark-color);
+    background-color: var(--primary-dark-transparent);
     padding: 10px;
   }
 </style>
