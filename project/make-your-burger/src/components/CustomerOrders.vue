@@ -24,7 +24,12 @@ import Loading from './Loading.vue';
           }
         },
         async statusHandler(id, status) {
-          await updateOrder(id, status)
+          try {
+            await updateOrder(id, status);
+            this.$emit("messageHandler", `Order ${id} updated to ${status}!`, "positive-message")
+          } catch (error) {
+            this.$emit("messageHandler", "Something went wrong", "negative-message")
+          }
         },
     },
     components: { Loading }
