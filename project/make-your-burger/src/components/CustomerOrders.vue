@@ -5,7 +5,7 @@ import Loading from './Loading.vue';
   export default {
     name: "CustomerOrders",
     props: ["orders", "status"],
-    emits: ["saveOrders"],
+    emits: ["saveOrders", "messageHandler"],
     data() {
         return {
             idLoading: null,
@@ -13,10 +13,15 @@ import Loading from './Loading.vue';
     },
     methods: {
         async deleteHandler(id) {
-          this.idLoading = id;
-          await deleteOrder(id);
-          this.$emit("saveOrders");
-          this.idLoading = null;
+          try {
+            this.idLoading = id;
+            await deleteOrder(id);
+            this.$emit("saveOrders");
+            this.$emit("messageHandler", `Order ${id} removed with success!`, "positive-message");
+            this.idLoading = null;
+          } catch (error) {
+            this.$emit("messageHandler", "Something went wrong", "negative-message")
+          }
         },
         async statusHandler(id, status) {
           await updateOrder(id, status)

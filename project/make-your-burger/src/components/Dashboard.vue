@@ -1,6 +1,7 @@
 <script>
 import { getOrders, getStatus } from '../services/api';
 import CustomerOrders from './CustomerOrders.vue';
+import MessageForm from './MessageForm.vue';
   export default {
     name: "Dashboard",
     data() {
@@ -8,12 +9,24 @@ import CustomerOrders from './CustomerOrders.vue';
             titles: ["#", "Client", "Bread", "Meat", "Optionals", "Status"],
             orders: [],
             status: [],
+            messageType: null,
+            sentMessage: null,
         };
     },
     components: {
-      CustomerOrders,
-    },
+    CustomerOrders,
+    MessageForm
+},
     methods: {
+      messageHandler(msg, type) {
+        this.sentMessage = msg;
+        this.messageType = type;
+
+        setTimeout(() => {
+          this.sentMessage = null;
+          this.messageType = null;
+        }, 5000);
+      },
       async saveOrders() {
         const orders = await getOrders();
         this.orders = orders;
@@ -32,6 +45,10 @@ import CustomerOrders from './CustomerOrders.vue';
 
 <template>
   <div>
+    <MessageForm 
+      :messageType="messageType"
+      :sentMessage="sentMessage"
+    />
     <table>
       <tr>
         <th v-for="title in titles">
@@ -40,6 +57,7 @@ import CustomerOrders from './CustomerOrders.vue';
       </tr>
       <CustomerOrders
         @save-orders="saveOrders"
+        @message-handler="messageHandler"
         :orders="orders"
         :status="status"
       />
