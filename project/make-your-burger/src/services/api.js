@@ -48,3 +48,14 @@ export async function getStatus() {
     console.error(error);
   }
 }
+
+export async function deleteOrder(id) {
+  try {
+    const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/burgers/${id}`;
+    const request = await fetch(REQUEST_URL, { method: "DELETE" })
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
