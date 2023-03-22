@@ -37,54 +37,56 @@ import Loading from './Loading.vue';
 </script>
 
 <template>
-  <tr v-for="order in orders" :key="order.id">
-    <td>
-      {{ order.id }}
-    </td>
-    <td>
-      {{ order.name }}
-    </td>
-    <td>
-      {{ order.bread }}
-    </td>
-    <td>
-      {{ order.meat }}
-    </td>
-    <td>
-      <ul>
-        <li v-for="(optinal, index) in order.options" :key="index">
-          {{ optinal }}
-        </li>
-      </ul>
-    </td>
-    <td>
-      <div  class="status-container">
-        <select
-          class="status-item"
-          :value="order.status"
-          @change="statusHandler(order.id, $event.target.value)"
-        >
-          <option
-            v-for="{id, type} in status"
-            :key="id"
-            :name="type"
-            :value="type"
+  <tbody>
+    <tr v-for="order in orders" :key="order.id">
+      <td>
+        {{ order.id }}
+      </td>
+      <td>
+        {{ order.name }}
+      </td>
+      <td>
+        {{ order.bread }}
+      </td>
+      <td>
+        {{ order.meat }}
+      </td>
+      <td>
+        <ul>
+          <li v-for="(optinal, index) in order.options" :key="index">
+            {{ optinal }}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <div  class="status-container">
+          <select
+            class="status-item"
+            :value="order.status"
+            @change="statusHandler(order.id, $event.target.value)"
           >
-            {{ type }}
-          </option>
-        </select>
-  
-        <button
-          class="status-item status-btn"
-          @click="deleteHandler(order.id)"
-          :disabled="idLoading === order.id"
-        >
-          <span v-if="!(idLoading === order.id)">Cancelar</span>
-          <Loading v-else />
-        </button>
-      </div>
-    </td>
-  </tr>
+            <option
+              v-for="{id, type} in status"
+              :key="id"
+              :name="type"
+              :value="type"
+            >
+              {{ type }}
+            </option>
+          </select>
+    
+          <button
+            class="status-item status-btn"
+            @click="deleteHandler(order.id)"
+            :disabled="idLoading === order.id"
+          >
+            <span v-if="!(idLoading === order.id)">Cancelar</span>
+            <Loading v-else />
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
 </template>
 
 <style scoped>

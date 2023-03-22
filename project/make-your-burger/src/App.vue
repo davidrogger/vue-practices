@@ -54,4 +54,19 @@
     color: var(--primary-dark-color);
   }
 
+  table::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  table::-webkit-scrollbar-thumb {
+    background-color: var(--primary-dark-transparent);
+    border-radius: 20px;
+    border: 1px solid var(--secondary-accent-color);
+  }
+
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-dark-color);
+  }
+
 </style>

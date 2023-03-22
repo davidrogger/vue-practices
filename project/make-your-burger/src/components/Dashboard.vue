@@ -74,14 +74,19 @@ import MessageForm from './MessageForm.vue';
   }
 
   table {
-    width: 100%;
     border-collapse: collapse;
-    overflow: scroll;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: none;
   }
 
   th {
     border-bottom: 2px solid var(--primary-dark-color);
     background-color: var(--primary-dark-transparent);
     padding: 10px;
+    width: 100%;
   }
+
 </style>
