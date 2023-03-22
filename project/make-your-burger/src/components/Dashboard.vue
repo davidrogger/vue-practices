@@ -39,6 +39,7 @@ import CustomerOrders from './CustomerOrders.vue';
         </th>
       </tr>
       <CustomerOrders
+        @save-orders="saveOrders"
         :orders="orders"
         :status="status"
       />

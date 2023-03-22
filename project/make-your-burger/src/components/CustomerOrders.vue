@@ -1,8 +1,26 @@
 <script>
+  import { deleteOrder } from '../services/api';
+import Loading from './Loading.vue';
+
   export default {
     name: "CustomerOrders",
     props: ["orders", "status"],
-  }
+    emits: ["saveOrders"],
+    data() {
+        return {
+            idLoading: null,
+        };
+    },
+    methods: {
+        async deleteHandler(id) {
+          this.idLoading = id;
+          await deleteOrder(id);
+          this.$emit("saveOrders");
+          this.idLoading = null;
+        }
+    },
+    components: { Loading }
+}
 </script>
 
 <template>
@@ -27,24 +45,30 @@
       </ul>
     </td>
     <td>
-      <select
-        class="status-item"
-        :value="order.status"
-      >
-        <option
-          v-for="{id, type} in status"
-          :key="id"
-          :name="type"
-          :value="type"
+      <div  class="status-container">
+        <select
+          class="status-item"
+          :value="order.status"
         >
-          {{ type }}
-        </option>
-      </select>
-      <button
-      class="status-item status-btn"
-      >
-        Cancelar
-      </button>
+          <option
+            v-for="{id, type} in status"
+            :key="id"
+            :name="type"
+            :value="type"
+          >
+            {{ type }}
+          </option>
+        </select>
+  
+        <button
+          class="status-item status-btn"
+          @click="deleteHandler(order.id)"
+          :disabled="idLoading === order.id"
+        >
+          <span v-if="!(idLoading === order.id)">Cancelar</span>
+          <Loading v-else />
+        </button>
+      </div>
     </td>
   </tr>
 </template>
@@ -65,8 +89,13 @@
     white-space: nowrap;
   }
 
+  .status-container {
+    display: flex;
+    justify-content: center;
+  }
+
   .status-item {
-    width: 45%;
+    width: 110px;
     height: 40px;
   }
 
