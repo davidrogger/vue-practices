@@ -44,7 +44,9 @@ import MessageForm from './MessageForm.vue';
 </script>
 
 <template>
-  <div>
+  <div
+    class="orders-container"
+  >
     <MessageForm 
       :messageType="messageType"
       :sentMessage="sentMessage"
@@ -66,6 +68,11 @@ import MessageForm from './MessageForm.vue';
 </template>
 
 <style scoped>
+  .orders-container {
+    position: relative;
+    padding-top: 50px;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;

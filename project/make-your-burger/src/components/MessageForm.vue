@@ -28,12 +28,16 @@
   }
 
   .message-container {
-    border-radius: 5px;
-    padding: 10px;
-    margin: 30px 0;
-    text-align: center;;
-    transition: 2s;
     animation: fadeIn 5s;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+    transition: 2s;
   }
 
   @keyframes fadeIn {

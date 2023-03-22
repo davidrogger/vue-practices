@@ -163,8 +163,10 @@
 
 <style>
   .order-container {
+    position: relative;
     max-width: 350px;
     margin: auto;
+    padding-top: 50px;
   }
 
   form {
