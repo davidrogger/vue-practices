@@ -1,5 +1,5 @@
 <script>
-  import { deleteOrder } from '../services/api';
+  import { deleteOrder, updateOrder } from '../services/api';
 import Loading from './Loading.vue';
 
   export default {
@@ -17,7 +17,10 @@ import Loading from './Loading.vue';
           await deleteOrder(id);
           this.$emit("saveOrders");
           this.idLoading = null;
-        }
+        },
+        async statusHandler(id, status) {
+          await updateOrder(id, status)
+        },
     },
     components: { Loading }
 }
@@ -49,6 +52,7 @@ import Loading from './Loading.vue';
         <select
           class="status-item"
           :value="order.status"
+          @change="statusHandler(order.id, $event.target.value)"
         >
           <option
             v-for="{id, type} in status"

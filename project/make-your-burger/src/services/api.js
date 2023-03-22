@@ -59,3 +59,19 @@ export async function deleteOrder(id) {
     console.error(error);
   }
 }
+
+export async function updateOrder(id, status) {
+  try {
+    const REQUEST_URL = `${BACKEND_URL}:${BACKEND_PORT}/burgers/${id}`;
+    const PATCH_DATA = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    };
+    const request = await fetch(REQUEST_URL, PATCH_DATA);
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
