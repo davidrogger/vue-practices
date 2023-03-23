@@ -247,27 +247,56 @@ Os eventos são realizados de forma sequencial, porém o segundo evento não esp
 ## Executando metodos de componentes filho para pai
 
 É possivel ativar metodos que realizam alterações de informações de dados de um filho para um pai usando o metodo $emit.
-Dentro do componente filho, se criado um evento de botão que altera alguma informação em seu pai, o evento click, deve chamar o metodo $emit indicando o nome do method, pai que será executado.
+Dentro do componente filho, criando um evento de botão que altera alguma informação em seu pai, o evento click, deve chamar o metodo $emit indicando o nome do method, pai que será executado.
 
-Exemplo:
+Exemplo no componente filho:
+
 ```
 <template>
   <button
-    @click="$emit('changeImg')"
+    @click="$emit('changeImg')" // << função emit indicando o nome do method no componente pai.
   >
     Mudar images
   </button>
 </template>
+```
 
+Existem duas formas de declarar o metodo emit, no componente, por meio de um array conforme a baixo:
+
+```
 <script>
   export default {
     name: 'ChangeImg',
-    emits: ['changeImg']
+    emits: ['changeImg'] // É possivel
   }
 </script>
 ```
 
+Ou passando um objeto com a chave do metodo, onde quando não é necessário realizar uma validação pode-se passar o valor da chave como null, ou definir um método de validação para o input do método.
+
+Exemplo retirado da documentação do Vue JS:
+
+```
+export default {
+  emits: {
+    // no validation
+    click: null,
+
+    // with validation
+    submit: (payload) => {
+      if (payload.email && payload.password) {
+        return true
+      } else {
+        console.warn(`Invalid submit event payload!`)
+        return false
+      }
+    }
+  }
+}
+```
+Voltando a mudança do caminho da imagem, que é ativada pelo filho alterando no componente pai.
 Este evento changeImg, existe no component pai do ChangeImg.
+
 ```
 <script>
 import ChangeImg from './ChangeImg.vue';
@@ -288,6 +317,24 @@ import ChangeImg from './ChangeImg.vue';
     }
 }
 </script>
+```
+
+Quando passando para o componente filho o método, por convenção é "passado" seguindo o padrão kaleb-case, da seguinte forma:
+
+```
+<template>
+  <div
+    class="session"
+  >
+    <h1>
+      Executar eventos por parentesco de filhos para pai
+    </h1>
+    <img :src="avatar" :alt="description">
+    <ChangeImg 
+      @change-img="changeImg" // << @nome-do-metodo="MétodoDesejado"
+    />
+  </div>
+</template>
 ```
 
 É alterada de forma estática a imagem, ao ativar o evento changeImg no componente pai que possui a imagem que é alterada.
